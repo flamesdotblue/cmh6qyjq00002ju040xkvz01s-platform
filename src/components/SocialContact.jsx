@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { Award, Quote, Send, Linkedin, Instagram, Mail } from 'lucide-react';
 
 const testimonials = [
@@ -27,24 +26,15 @@ export default function SocialContact() {
     <section id="contact" className="relative mx-auto mt-16 w-[95%] max-w-[1200px] pb-20">
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <div>
-          <motion.h2
-            initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }}
-            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6 }}
-            className="mb-4 bg-gradient-to-r from-cyan-100 via-white to-cyan-200 bg-clip-text text-2xl font-extrabold text-transparent md:text-3xl"
-          >
+          <h2 className="mb-4 bg-gradient-to-r from-cyan-100 via-white to-cyan-200 bg-clip-text text-2xl font-extrabold text-transparent md:text-3xl">
             Some Reviews
-          </motion.h2>
+          </h2>
           <div className="grid grid-cols-1 gap-4">
             {testimonials.map((t, i) => (
-              <motion.div
+              <div
                 key={t.name}
-                initial={{ opacity: 0, y: 16, filter: 'blur(6px)' }}
-                whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.5, delay: i * 0.05 }}
-                className="relative overflow-hidden rounded-3xl border border-white/15 bg-white/10 p-5 backdrop-blur-xl"
+                className="relative translate-y-2 overflow-hidden rounded-3xl border border-white/15 bg-white/10 p-5 opacity-0 backdrop-blur-xl transition-all duration-500 ease-out [animation-delay:var(--d)] [animation-duration:700ms] [animation-fill-mode:forwards] [animation-name:fadeUp]"
+                style={{ ['--d']: `${i * 80}ms` }}
               >
                 <div className="pointer-events-none absolute -right-6 -top-6 h-24 w-24 rounded-full bg-cyan-400/15 blur-2xl" />
                 <Quote className="text-cyan-300" size={18} />
@@ -52,53 +42,34 @@ export default function SocialContact() {
                 <div className="mt-4 text-sm text-slate-300/90">
                   <span className="font-semibold text-slate-100">{t.name}</span> — {t.role}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
 
-          <motion.h3
-            initial={{ opacity: 0, y: 18, filter: 'blur(6px)' }}
-            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6 }}
-            className="mt-8 mb-3 flex items-center gap-2 text-lg font-semibold text-slate-100"
-          >
+          <h3 className="mt-8 mb-3 flex items-center gap-2 text-lg font-semibold text-slate-100">
             <Award className="text-cyan-300" size={18} /> Certifications
-          </motion.h3>
+          </h3>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {certs.map((c, i) => (
-              <motion.div
+              <div
                 key={c.title}
-                initial={{ opacity: 0, y: 14, filter: 'blur(6px)' }}
-                whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.45, delay: i * 0.04 }}
-                className="rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-xl"
+                className="translate-y-2 rounded-2xl border border-white/15 bg-white/10 p-4 opacity-0 backdrop-blur-xl transition-all duration-500 ease-out [animation-delay:var(--d)] [animation-duration:700ms] [animation-fill-mode:forwards] [animation-name:fadeUp]"
+                style={{ ['--d']: `${i * 60}ms` }}
               >
                 <div className="text-slate-100">{c.title}</div>
                 <div className="text-xs text-slate-300/90">{c.org} • {c.year}</div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
 
         <div>
-          <motion.h2
-            initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }}
-            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6 }}
-            className="mb-4 bg-gradient-to-r from-cyan-100 via-white to-cyan-200 bg-clip-text text-2xl font-extrabold text-transparent md:text-3xl"
-          >
+          <h2 className="mb-4 bg-gradient-to-r from-cyan-100 via-white to-cyan-200 bg-clip-text text-2xl font-extrabold text-transparent md:text-3xl">
             Let’s Build Something
-          </motion.h2>
+          </h2>
 
-          <motion.form
+          <form
             onSubmit={(e) => e.preventDefault()}
-            initial={{ opacity: 0, y: 16, filter: 'blur(6px)' }}
-            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6 }}
             className="rounded-3xl border border-white/15 bg-white/10 p-5 backdrop-blur-xl"
           >
             <label className="mb-3 block">
@@ -157,7 +128,7 @@ export default function SocialContact() {
                 <Mail size={18} />
               </a>
             </div>
-          </motion.form>
+          </form>
         </div>
       </div>
 
@@ -166,6 +137,7 @@ export default function SocialContact() {
           Designed & Built by Alinur Arafat • 2025
         </div>
       </footer>
+      <style>{`@keyframes fadeUp{from{transform:translateY(8px);opacity:0;filter:blur(6px)}to{transform:translateY(0);opacity:1;filter:blur(0)}}`}</style>
     </section>
   );
 }
